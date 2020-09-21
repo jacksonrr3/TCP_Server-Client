@@ -4,7 +4,6 @@
 #include "TCP_Server.h"
 
 
-/*
 void client_handler(const Client& client, std::mutex& _mx) {
 	std::size_t data_length = 1;
 	std::string msg;
@@ -41,17 +40,19 @@ void client_handler(const Client& client, std::mutex& _mx) {
 	_mx.unlock();
 }
 
-*/
 
+/*
 void client_handler(const Client& client, std::mutex& _mx) {
 	char* buffer = new char[BUFF_SIZE];
+	do {
 	int res = client.recv_data(buffer, 0, BUFF_SIZE);
 	std::string msg(buffer, res);
 	_mx.lock();
 	std::cout << msg << std::endl;
 	_mx.unlock();
+	} while (res > 0);
 }
-
+*/
 
 
 int main(int argc, char* argv[])
