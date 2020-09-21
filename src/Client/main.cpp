@@ -54,9 +54,9 @@ int main(int argc, char** argv) {
 				std::cout << "Stop sending" << std::endl;
 				break; 
 			}
-			int n = client.send_data(code_func(std::string(300, 'c')));
-			//int n = client.send_data(code_func(msg));
-			//int n = client.send_data(msg);
+			
+			int n = client.send_data(code_func(msg));
+			
 			std::cout << "send " << n << " byte" << std::endl;
 		} while (true);
 		
