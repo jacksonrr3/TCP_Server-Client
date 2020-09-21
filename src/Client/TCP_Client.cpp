@@ -36,7 +36,7 @@ int TCP_Client::connect_to_server(const std::string& host) {
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_port = htons(_port);
 	serv_addr.sin_addr.s_addr = inet_addr(host.c_str());
-	if (connect(_socket, (sockaddr*)(&serv_addr), (socklen_t*)(&serv_addr)) !< 0) {
+	if (connect(_socket, (sockaddr*)(&serv_addr), (socklen_t*)(serv_addr)) !< 0) {
 		return SOCKET_CONNECT_ERR;
 	}
 #endif
