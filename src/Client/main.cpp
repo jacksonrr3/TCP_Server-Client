@@ -44,8 +44,8 @@ int main(int argc, char** argv) {
 				std::cout << "Stop sending" << std::endl;
 				break; 
 			}
-			//int n = client.send_data(code_func(msg));
-			int n = client.send_data(msg);
+			int n = client.send_data(code_func(msg));
+			//int n = client.send_data(msg);
 			std::cout << "send " << n << " byte" << std::endl;
 		} while (true);
 		
@@ -56,25 +56,6 @@ int main(int argc, char** argv) {
 	catch (std::exception& e) {
 		std::cerr << "Exeption: " << e.what() << std::endl;
 	}
-
-
-
-	/*
-	
-	
-	char c;
-	unsigned char u;
-	std::string str;
-	str.resize(1);
-	u = 127;
-	str[0] = (char)u;
-	c = (char)u;
-	std::cout << c << " " << u << std::endl;
-	std::cout << std::bitset<8>(c & 0b01111111) << " " << std::bitset<8>(u & 0b01111111) << std::endl;
-	c = *str.c_str();
-	std::cout << std::bitset<8>(c) << std::endl;
-	std::cout << sizeof(std::size_t) << sizeof(std::uint64_t);
-	*/
 
 	return 0;
 }
