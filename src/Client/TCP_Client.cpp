@@ -55,7 +55,7 @@ int TCP_Client::disconnect() {
 	return DISCONNECT;
 }
 
-bool TCP_Client::send_data(const std::string& buffer) const {
+int TCP_Client::send_data(const std::string& buffer) const {
 	int res = send(_socket, buffer.c_str(), buffer.size(), 0);
-	return (res > 0);
+	return res;
 }
