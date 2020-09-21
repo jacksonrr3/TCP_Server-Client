@@ -40,11 +40,13 @@ class Client {
 #ifdef _WIN32 
 	SOCKET _client_socket = INVALID_SOCKET;
 	SOCKADDR_IN _client_addres;
+public:
 	Client(SOCKET socket, SOCKADDR_IN addr) :_client_socket(socket), _client_addres(addr) {}
 	
 #else
 	int _client_socket;
 	struct sockaddr_in _client_addres;
+public:
 	Client(int socket, struct sockaddr_in addr) :_client_socket(socket), _client_addres(addr) {}
 
 #endif
