@@ -65,10 +65,10 @@ void TCP_Server::prosess() {
 
 #else
 	while (true) {
-		int client_socket :
+		int client_socket;
 		struct sockaddr_in client_addres;
 		int addrlen = sizeof(struct sockaddr_in);
-		client_socket = accept(_server_socket, (struct sockaddr*)(&client_addres, (socklen_t*)(&addrlen));
+		client_socket = accept(_server_socket, (struct sockaddr*)(&client_addres), (socklen_t*)(&addrlen));
 #endif
 		if (client_socket != 0) {
 			std::cout << "Connected to client."<< std::endl;
