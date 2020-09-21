@@ -40,13 +40,16 @@ class Client {
 #ifdef _WIN32 
 	SOCKET _client_socket = INVALID_SOCKET;
 	SOCKADDR_IN _client_addres;
+	Client(SOCKET socket, SOCKADDR_IN addr) :_client_socket(socket), _client_addres(addr) {}
+
 #else
 	int _client_socket;
 	struct sockaddr_in _client_addres;
+	Client(int socket, struct sockaddr_in addr) :_client_socket(socket), _client_addres(addr) {}
+
 #endif
 public:
-	Client(SOCKET socket, SOCKADDR_IN addr) :_client_socket(socket), _client_addres(addr) {}
-	
+		
 	int recv_data(char* buff, int offset = 0, int size = BUFF_SIZE) const;
 	//const char* get_data();
 
