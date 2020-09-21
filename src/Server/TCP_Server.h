@@ -50,19 +50,11 @@ public:
 	Client(int socket, struct sockaddr_in addr) :_client_socket(socket), _client_addres(addr) {}
 
 #endif
-	~Client() {
-		shutdown(_client_socket, 0);
-		
-#ifdef _WIN32
-		closesocket(_client_socket);
-		WSACleanup();
-#else
-		close(_client_socket);
-#endif
-	}
+	
 
 public:
-		
+	~Client() {}
+	
 	int recv_data(char* buff, int offset = 0, int size = BUFF_SIZE) const;
 
 	friend class TCP_Server;
