@@ -52,5 +52,5 @@ public:
 	int connect_to_server(const std::string& host);
 	int disconnect();
 
-	bool send_data(const std::string& buffer) const;
+	int send_data(const std::string& buffer) const;
 };
