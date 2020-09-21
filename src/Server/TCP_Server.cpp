@@ -83,7 +83,7 @@ void TCP_Server::prosess() {
 
 
 int TCP_Server::stop() {
-	shutdown(_server_socket, 0);
+	//shutdown(_server_socket, 0);
 #ifdef _WIN32
 	closesocket(_server_socket);
 #else
