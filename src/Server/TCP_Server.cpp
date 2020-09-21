@@ -11,7 +11,11 @@ std::mutex _mx;
 TCP_Server::TCP_Server(std::uint16_t port, std::function<void(const Client&, std::mutex&)> handler):
 	_port(port), _handler(handler) {}
 
-TCP_Server::~TCP_Server() {};
+TCP_Server::~TCP_Server() {
+#ifdef _WIN32
+	WSACleanup();
+#endif
+};
 
 int TCP_Server::start() {
 #ifdef _WIN32 //Windows
@@ -79,6 +83,7 @@ void TCP_Server::prosess() {
 
 
 int TCP_Server::stop() {
+	shutdown(_server_socket, 0);
 #ifdef _WIN32
 	closesocket(_server_socket);
 #else
