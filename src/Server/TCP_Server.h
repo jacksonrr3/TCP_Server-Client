@@ -50,9 +50,12 @@ class Client {
 #endif
 	~Client() {
 		shutdown(_client_socket, 0);
-		closesocket(_client_socket);
+		
 #ifdef _WIN32
+		closesocket(_client_socket);
 		WSACleanup();
+#else
+		close(_client_socket);
 #endif
 	}
 
