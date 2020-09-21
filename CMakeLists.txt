@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(tcp VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(tcp_test VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Threads REQUIRED)
 
