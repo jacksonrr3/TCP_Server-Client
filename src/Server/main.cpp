@@ -3,9 +3,10 @@
 #include <string>
 #include "TCP_Server.h"
 
-/*
+
+
 void client_handler(const Client& client, std::mutex& _mx) {
-	std::size_t data_length = 1;
+	std::size_t data_length = 0;
 	std::string msg;
 	int res = 0;
 	char* buffer = new char [BUFF_SIZE];
@@ -25,9 +26,10 @@ void client_handler(const Client& client, std::mutex& _mx) {
 	}
 	res = 0;
 	while (res < data_length) {
-		if (int ret = client.recv_data(buffer, 0, BUFF_SIZE) > 0) {
+		int ret = client.recv_data(buffer, 0, BUFF_SIZE);
+		if (ret > 0) {
 			res += ret;
-			msg += std::string(buffer, ret);
+			msg += std::string(buffer,ret);
 		}
 
 		else {
@@ -38,33 +40,38 @@ void client_handler(const Client& client, std::mutex& _mx) {
 	_mx.lock();
 	std::cout << msg << std::endl;
 	_mx.unlock();
+
+
 }
-*/
 
 
+
+/*
 void client_handler(const Client& client, std::mutex& _mx) {
 	char* buffer = new char[BUFF_SIZE];
 	int res = 0;
 	do {
-	res = client.recv_data(buffer, 0, BUFF_SIZE);
-	std::string msg(buffer, res);
-	_mx.lock();
-	std::cout << msg << std::endl;
-	_mx.unlock();
+		res = client.recv_data(buffer, 0, BUFF_SIZE);
+		std::string msg(buffer, res);
+		_mx.lock();
+		std::cout << msg << std::endl;
+		_mx.unlock();
 	} while (res > 0);
-}
 
+}
+*/
 
 
 int main(int argc, char* argv[])
 {
+	
 	try {
 		if (argc < 2)
 		{
 			std::cerr << "Usage: server <port>\n";
 			return 1;
 		}
-std::cout << "test _version!" << "1"<< std::endl;
+
 		TCP_Server server(std::atoi(argv[1]), client_handler);
 		server.start();
 		std::cout << "Start: " << std::endl;
