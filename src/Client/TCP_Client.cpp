@@ -23,9 +23,6 @@ int TCP_Client::connect_to_server(const std::string& host) {
 	//serv_addr.sin_addr.S_un.S_addr = inet_addr(host.c_str()); 
 	serv_addr.sin_addr.S_un.S_addr = InetPton(AF_INET, (PCWSTR)(host.c_str()), &serv_addr.sin_addr);
 	serv_addr.sin_port = htons(_port);
-	if (connect(_socket, (sockaddr *)(&serv_addr), sizeof(serv_addr)) == SOCKET_ERROR) {
-		return SOCKET_CONNECT_ERR;
-	}
 
 #else
 	_socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -36,10 +33,11 @@ int TCP_Client::connect_to_server(const std::string& host) {
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_port = htons(_port);
 	serv_addr.sin_addr.s_addr = inet_addr(host.c_str());
-	if (connect(_socket, (sockaddr*)(&serv_addr), (socklen_t*)(serv_addr)) !< 0) {
+#endif
+	if (connect(_socket, (sockaddr*)(&serv_addr), sizeof(serv_addr)) !< 0) {
 		return SOCKET_CONNECT_ERR;
 	}
-#endif
+
 	return CONNECTED;
 }
 
