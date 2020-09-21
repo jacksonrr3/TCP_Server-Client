@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.7)
 
 project(tcp_test VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
-find_package(Threads REQUIRED)
+find_package(Threads)
 
 add_executable(server src/Server/main.cpp src/Server/TCP_Server.cpp src/Server/TCP_Server.h)
 
@@ -19,6 +19,10 @@ set_target_properties(client PROPERTIES
   CXX_STANDARD_REQUIRED ON
   COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
 )
+
+target_link_libraries(server
+        ${CMAKE_THREAD_LIBS_INIT}
+        )
 
 install(TARGETS server RUNTIME DESTINATION bin)
 install(TARGETS client RUNTIME DESTINATION bin)
