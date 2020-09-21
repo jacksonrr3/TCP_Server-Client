@@ -1,0 +1,22 @@
+dist: xenial
+language: cpp
+addons:
+  apt:
+    sources:
+    - sourceline: "deb http://us.archive.ubuntu.com/ubuntu/ xenial main universe"
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-7
+    - g++-7
+    - libdlib-dev
+script:
+- export CC=gcc-7
+- export CXX=g++-7
+- cmake .
+- cmake --build .
+- cmake --build . --target package
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    - curl -T tcp_test-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -ujacksonrr3:$BINTRAY_API_KEY "https://api.bintray.com/content/jacksonrr3/otus-cpp/homework/$TRAVIS_BUILD_NUMBER/tcp_test-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=xenial;deb_component=main;deb_architecture=amd64;publish=1"
