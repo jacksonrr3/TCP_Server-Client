@@ -41,17 +41,24 @@ class Client {
 	SOCKET _client_socket = INVALID_SOCKET;
 	SOCKADDR_IN _client_addres;
 	Client(SOCKET socket, SOCKADDR_IN addr) :_client_socket(socket), _client_addres(addr) {}
-
+	
 #else
 	int _client_socket;
 	struct sockaddr_in _client_addres;
 	Client(int socket, struct sockaddr_in addr) :_client_socket(socket), _client_addres(addr) {}
 
 #endif
+	~Client() {
+		shutdown(_client_socket, 0);
+		closesocket(_client_socket);
+#ifdef _WIN32
+		WSACleanup();
+#endif
+	}
+
 public:
 		
 	int recv_data(char* buff, int offset = 0, int size = BUFF_SIZE) const;
-	//const char* get_data();
 
 	friend class TCP_Server;
 };
@@ -59,8 +66,6 @@ public:
 class TCP_Server {
 	std::function<void(const Client&, std::mutex&)> _handler;
 	std::vector<std::thread> _client_threads;
-//	std::map<int, Client> _clients;
-	
 
 	std::uint16_t _port;
 #ifdef _WIN32 
