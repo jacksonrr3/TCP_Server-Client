@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 			std::cerr << "Usage: server <port>\n";
 			return 1;
 		}
-
+std::cout << "test _version!" << std::endl;
 		TCP_Server server(std::atoi(argv[1]), client_handler);
 		server.start();
 		std::cout << "Start: " << std::endl;
