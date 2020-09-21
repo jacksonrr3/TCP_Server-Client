@@ -6,7 +6,7 @@ find_package(Threads REQUIRED)
 
 add_executable(server src/Server/main.cpp src/Server/TCP_Server.cpp src/Server/TCP_Server.h)
 
-add_executable(client src/Client/main.cpp src/Client/TCP_Clinet.cpp src/Client/TCP_Clinet.h)
+add_executable(client src/Client/main.cpp src/Client/TCP_Client.cpp src/Client/TCP_Client.h)
 
 set_target_properties(server PROPERTIES
   CXX_STANDARD 14
