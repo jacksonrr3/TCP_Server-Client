@@ -24,7 +24,7 @@ std::string code_func(const std::string& str) {
 		}
 		std::reverse(v_res.begin(), v_res.end());
 		res.resize(1 + v_res.size());
-		res[0] = ((char)(v_res.size()) | 0b1000000);
+		res[0] = ((char)(v_res.size()) | 0b10000000);
 
 		for (int i = 0; i < v_res.size(); i++) {
 			res[i + 1] = v_res[i];
