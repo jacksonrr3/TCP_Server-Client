@@ -44,7 +44,7 @@ void client_handler(const Client& client, std::mutex& _mx) {
 
 void client_handler(const Client& client, std::mutex& _mx) {
 	char* buffer = new char[BUFF_SIZE];
-	inr res = 0;
+	int res = 0;
 	do {
 	res = client.recv_data(buffer, 0, BUFF_SIZE);
 	std::string msg(buffer, res);
