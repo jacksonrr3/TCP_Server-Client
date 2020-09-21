@@ -72,7 +72,7 @@ void TCP_Server::prosess() {
 #endif
 		if (client_socket != 0) {
 			std::cout << "Connected to client."<< std::endl;
-			_client_threads.push_back(std::thread(_handler, Client::Client(client_socket, client_addres), std::ref(_mx)));
+			_client_threads.push_back(std::thread(_handler, Client(client_socket, client_addres), std::ref(_mx)));
 		}
 	}
 }
